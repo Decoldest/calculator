@@ -1,5 +1,5 @@
 :root {
-  --colorShadeA: rgb(57, 148, 200);
+  --colorShadeA: rgb(39, 104, 141);
   --colorShadeB: rgb(43, 116, 161);
   --colorShadeC: rgb(107, 191, 240);
   --colorShadeD: rgb(203, 228, 254);
@@ -29,23 +29,25 @@
   min-width: 400px;
   min-height: 500px;
   padding: 2% 0;
-  background-color: #333;
-  background-image: linear-gradient(90deg, #e6ebee, #f0f0f0);
+  background-image: linear-gradient(90deg, #5cb2eb, #78b5eb);
   box-shadow: 0px 0px 0px 0px #3b3d3e inset,
-    0px -25px 20px 15px #b1b8c0 inset,
-    0px 1px 0px 0px #b1b8c0 inset,
-    10px 50px 10px 0px rgba(60, 54, 54, 0.1),
-    0 65px 100px -10px rgba(14, 11, 11, 0.5);
+    0px -25px 20px 15px rgb(54, 121, 197) inset,
+    0px 1px 0px 0px #5582b6 inset,
+    10px 50px 10px 0px rgba(0, 0, 0, 0.1),
+    0 65px 100px -10px rgba(60, 63, 67, 0.5);
   border-radius: 15px;
-
 
 }
 
-
-
 .display {
-  height: 50px;
-  margin: 2%;
+  height: 60px;
+  margin: 5%;
+  border-radius: 5px;
+  background: rgba(67, 67, 67, 0.05);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-right-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 button {
