@@ -3,6 +3,14 @@ let secondNumber;
 let operator;
 let displayValue;
 
+const display = document.querySelector('.display')
+const btnTest = document.getElementById('1');
+
+btnTest.addEventListener('click', () => {
+  console.log(btnTest);
+  display.textContent += '1';
+});
+
 function add(num1, num2){
   return num1 + num2;
 }
@@ -33,3 +41,4 @@ function operate(num1, num2, operator){
     return divide(num1, num2);
   }
 }
+
