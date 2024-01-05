@@ -47,18 +47,18 @@
   height: 60px;
   margin: 4% 6%;
   border-radius: 5px;
-  background: rgba(67, 67, 67, 0.05);
+  background: rgba(252, 252, 252, 0.25);
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-right-color: rgba(255, 255, 255, 0.1);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(245, 245, 245, 0.5);
+  border-right-color: rgba(108, 101, 101, 0.5);
+  border-bottom-color: rgba(100, 83, 83, 0.5);
   font-family: 'digital-7';
   letter-spacing: 4px;
 }
 
 button {
   width: 20.5%;
-  height: 12.5%;
+  height: 12%;
   cursor: pointer;
   color: rgb(44, 66, 105);
   vertical-align: middle;

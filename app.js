@@ -1,8 +1,24 @@
-let firstNumber;
-let secondNumber;
-let operator;
-//let displayValue;
-let input = [];
+let miniDisplay;
+let input = {
+  firstNumber : '',
+  operator : '',
+  secondNumber : '',
+  pop(){
+    if(this.secondNumber){
+      let temp = this.secondNumber;
+      this.secondNumber = '';
+      return temp;
+    } else if (this.operator){
+      let temp = this.operator;
+      this.operator = '';
+      return temp;
+    } else {
+      let temp = this.firstNumber;
+      this.firstNumber = '';
+      return temp;
+    }
+  }
+}; //Store [firstNumber, operator, secondNumber]
 
 const display = document.querySelector('.display')
 const btnTest = document.getElementById('1');
@@ -20,25 +36,31 @@ function handleBtnInput(btnInput, btnID) {
   if (btnID === 'number'){
     handleNumberInput(btnInput)
     console.log("Handled: " + btnInput);
+  } else if (btnID === 'operator'){
+    handleOperatorInput(btnInput);
+    console.log("Handled: " + btnInput);
   }
+  console.log("input = " + input);
 }
 
 function handleNumberInput(btnInput) {
-  if (operator) {
-    secondNumber = secondNumber ? secondNumber + btnInput : btnInput;
-    input[2] = secondNumber;
+  if (input.operator) {
+    console.log("seconf od " + input.secondNumber);
+    input.secondNumber = input.secondNumber ? input.secondNumber + btnInput : btnInput;
   } else {
-    firstNumber = firstNumber ? firstNumber + btnInput : btnInput;
-    input[0] = firstNumber;
+    input.firstNumber = input.firstNumber ? input.firstNumber + btnInput : btnInput;
   }
-  console.log("input = " + input);
   updateDisplay()
 }
 
 function handleOperatorInput(btnInput) {
-  if (operator) {
-    
+  if(input.secondNumber){
+    //miniDisplay = input.join(" ");
+    //console.log("Mini display = " + miniDisplay);
+    input.firstNumber = operate(input.pop(), input.pop(), input.pop());
   }
+  input.operator = btnInput;
+  updateDisplay();
 }
 
 function updateDisplay() {
@@ -64,7 +86,7 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-function operate(num1, num2, operator) {
+function operate(num2, operator, num1) {
   if(operator === '+'){
     return add(num1, num2);
   } else if (operator === '-'){
