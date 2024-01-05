@@ -17,6 +17,9 @@ let input = {
       this.firstNumber = '';
       return temp;
     }
+  },
+  join(){
+    return `${this.firstNumber} ${this.operator} ${this.secondNumber}`;
   }
 }; //Store [firstNumber, operator, secondNumber]
 
@@ -40,31 +43,30 @@ function handleBtnInput(btnInput, btnID) {
     handleOperatorInput(btnInput);
     console.log("Handled: " + btnInput);
   }
-  console.log("input = " + input);
 }
 
 function handleNumberInput(btnInput) {
-  if (input.operator) {
-    console.log("seconf od " + input.secondNumber);
-    input.secondNumber = input.secondNumber ? input.secondNumber + btnInput : btnInput;
+  if (input['operator']) {
+    console.log("second number " + input['secondNumber']);
+    input['secondNumber'] = input['secondNumber'] ? input['secondNumber'] + btnInput : btnInput;
   } else {
-    input.firstNumber = input.firstNumber ? input.firstNumber + btnInput : btnInput;
+    input['firstNumber'] = input['firstNumber'] ? input['firstNumber'] + btnInput : btnInput;
   }
   updateDisplay()
 }
 
 function handleOperatorInput(btnInput) {
-  if(input.secondNumber){
-    //miniDisplay = input.join(" ");
-    //console.log("Mini display = " + miniDisplay);
-    input.firstNumber = operate(input.pop(), input.pop(), input.pop());
+  if(input['secondNumber']){
+    miniDisplay = input.join();
+    console.log("Mini display = " + miniDisplay);
+    input['firstNumber'] = operate(input.pop(), input.pop(), input.pop());
   }
-  input.operator = btnInput;
+  input['operator'] = btnInput;
   updateDisplay();
 }
 
 function updateDisplay() {
-  display.textContent = input.join(" ");
+  display.textContent = input.join();
 }
 
 function add(num1, num2) {
@@ -86,6 +88,14 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+function sqrt(num1) {
+  return Math.sqrt(num1);
+}
+
+function pow(num1, num2) {
+  return Math.pow(num1, num2);
+}
+
 function operate(num2, operator, num1) {
   if(operator === '+'){
     return add(num1, num2);
@@ -95,6 +105,8 @@ function operate(num2, operator, num1) {
     return multiply(num1, num2)
   } else if (operator === '/'){
     return divide(num1, num2);
+  } else if (operator === '^'){
+    return pow(num1, num2)
   }
 }
 
