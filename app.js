@@ -53,6 +53,8 @@ function handleBtnInput(btnInput, btnID) {
     calculate();
   } else if (btnID === '.') {
     handleDecimal();
+  } else if (btnID === 'sqrt') {
+    handleSqrt();
   }
 }
 
@@ -77,7 +79,6 @@ function handleOperatorInput(btnInput) {
 }
 
 function calculate() {
-  console.log("calculating");
   if(input['secondNumber']) {
     input['firstNumber'] = operate(input.pop(), input.pop(), input.pop()).toString();
   }
@@ -106,6 +107,13 @@ function handleDecimal() {
       if (/^\d+$/.test(input[lastInput]))
       input[lastInput] += '.';
     }
+  updateDisplay();
+}
+
+function handleSqrt(){
+  if(!input['operator'] && !input['secondNumber']) {
+    input['firstNumber'] = operate(null, 'sqrt', input['firstNumber']).toString()
+  } 
   updateDisplay();
 }
 
@@ -153,6 +161,8 @@ function operate(num2, operator, num1) {
     return divide(num1, num2);
   } else if (operator === '^'){
     return pow(num1, num2)
+  } else if (operator === 'sqrt'){
+    return sqrt(num1)
   }
 }
 
