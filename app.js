@@ -1,4 +1,3 @@
-let miniDisplay;
 let memoryValue = 0;
 let input = {
   firstNumber : '',
@@ -30,7 +29,7 @@ let input = {
 }; //Store [firstNumber, operator, secondNumber]
 
 const display = document.querySelector('.display')
-const btnTest = document.getElementById('1');
+const miniDisplay = document.querySelector('.mini-display');
 const btns = Array.from(document.querySelectorAll('.calc-button'));
 
 function setButtonListener(btns) {
@@ -50,6 +49,8 @@ function handleBtnInput(btnInput, btnID) {
     deleteDigit();
   } else if (btnID === 'ac') {
     clearDisplay();
+  } else if (btnID === '='){
+    calculate();
   }
 }
 
@@ -66,16 +67,23 @@ function handleOperatorInput(btnInput) {
   if (!input['firstNumber']) return;
 
   if (input['secondNumber']) {
-    miniDisplay = input.join();
-    console.log("Mini display = " + miniDisplay);
+    miniDisplay.textContent = input.join();
     input['firstNumber'] = operate(input.pop(), input.pop(), input.pop()).toString();
   }
   input['operator'] = btnInput;
   updateDisplay();
 }
 
+function calculate() {
+  console.log("calculating");
+  if(input['secondNumber']) {
+    input['firstNumber'] = operate(input.pop(), input.pop(), input.pop()).toString();
+  }
+  miniDisplay.textContent = "";
+  updateDisplay();
+}
+
 function updateDisplay() {
-  console.log(typeof input['firstNumber']);
   display.textContent = input.join();
 }
 
@@ -90,7 +98,7 @@ function deleteDigit() {
 }
 
 function clearDisplay() {
-  miniDisplay = "";
+  miniDisplay.textContent = "";
   input.clear();
   updateDisplay();
 }
