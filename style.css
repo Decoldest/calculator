@@ -10,10 +10,6 @@
   src: url('src/digital-7.ttf');
 }
 
-* {
-  border: 1px solid red;
-}
-
 .main {
   display: flex;
   align-items: center;
@@ -66,9 +62,18 @@
 }
 
 .mini-display {
+  padding-top: 2px;
   text-align: right;
   font-size: 18px;
   height: 20px;
+}
+
+footer {
+	margin-bottom: 1rem;
+	font-weight: 700;
+	text-align: center;
+  color: #3b3d3e;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 button {
