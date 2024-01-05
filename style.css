@@ -72,7 +72,7 @@ footer {
 	margin-bottom: 1rem;
 	font-weight: 700;
 	text-align: center;
-  color: #3b3d3e;
+  color: #3f5560;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
@@ -84,7 +84,7 @@ button {
   vertical-align: middle;
   font-family: 'Sometype Mono', monospace;
   padding: 0;
-  margin: 0;
+  margin: 0px 0px 2px 0px;
   line-height: 30px;
   font-size: 14px;
 }
