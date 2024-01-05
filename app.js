@@ -49,8 +49,10 @@ function handleBtnInput(btnInput, btnID) {
     deleteDigit();
   } else if (btnID === 'ac') {
     clearDisplay();
-  } else if (btnID === '='){
+  } else if (btnID === '=') {
     calculate();
+  } else if (btnID === '.') {
+    handleDecimal();
   }
 }
 
@@ -94,6 +96,16 @@ function deleteDigit() {
 
   if (lastInput) input[lastInput] = input[lastInput].slice(0,-1);
  
+  updateDisplay();
+}
+
+function handleDecimal() {
+  lastInput = input['secondNumber'] ? 'secondNumber' : input['operator'] ? null : 
+    input['firstNumber'] ? 'firstNumber' : null;
+    if (lastInput) {
+      if (/^\d+$/.test(input[lastInput]))
+      input[lastInput] += '.';
+    }
   updateDisplay();
 }
 
