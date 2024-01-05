@@ -1,4 +1,5 @@
 let miniDisplay;
+let memoryValue;
 let input = {
   firstNumber : '',
   operator : '',
@@ -42,6 +43,8 @@ function handleBtnInput(btnInput, btnID) {
   } else if (btnID === 'operator'){
     handleOperatorInput(btnInput);
     console.log("Handled: " + btnInput);
+  } else if (btnID === 'del'){
+    deleteDigit();
   }
 }
 
@@ -56,7 +59,7 @@ function handleNumberInput(btnInput) {
 }
 
 function handleOperatorInput(btnInput) {
-  if(input['secondNumber']){
+  if (input['secondNumber']) {
     miniDisplay = input.join();
     console.log("Mini display = " + miniDisplay);
     input['firstNumber'] = operate(input.pop(), input.pop(), input.pop());
@@ -67,6 +70,17 @@ function handleOperatorInput(btnInput) {
 
 function updateDisplay() {
   display.textContent = input.join();
+}
+
+function deleteDigit() {
+  if (input['secondNumber']) {
+    input['secondNumber'] = input['secondNumber'].slice(0,-1);
+  } else if (input['operator']) {
+    input['operator'] = input['operator'].slice(0,-1);
+  } else {
+    input['firstNumber'] = input['firstNumber'].slice(0,-1);
+  }
+  updateDisplay();
 }
 
 function add(num1, num2) {
@@ -84,6 +98,7 @@ function multiply(num1, num2) {
 function divide(num1, num2) {
   if (num2 === '0') {
     return "Error";
+    //clear input
   }
   return num1 / num2;
 }
