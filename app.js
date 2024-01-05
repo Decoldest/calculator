@@ -21,6 +21,11 @@ let input = {
   },
   join(){
     return `${this.firstNumber} ${this.operator} ${this.secondNumber}`;
+  },
+  clear(){
+    this.firstNumber = '';
+    this.operator = '';
+    this.secondNumber = '';
   }
 }; //Store [firstNumber, operator, secondNumber]
 
@@ -37,20 +42,19 @@ function setButtonListener(btns) {
 }
 
 function handleBtnInput(btnInput, btnID) {
-  if (btnID === 'number'){
+  if (btnID === 'number') {
     handleNumberInput(btnInput)
-    console.log("Handled: " + btnInput);
-  } else if (btnID === 'operator'){
+  } else if (btnID === 'operator') {
     handleOperatorInput(btnInput);
-    console.log("Handled: " + btnInput);
-  } else if (btnID === 'del'){
+  } else if (btnID === 'del') {
     deleteDigit();
+  } else if (btnID === 'ac') {
+    clearDisplay();
   }
 }
 
 function handleNumberInput(btnInput) {
   if (input['operator']) {
-    console.log("second number " + input['secondNumber']);
     input['secondNumber'] = input['secondNumber'] ? input['secondNumber'] + btnInput : btnInput;
   } else {
     input['firstNumber'] = input['firstNumber'] ? input['firstNumber'] + btnInput : btnInput;
@@ -73,13 +77,18 @@ function updateDisplay() {
 }
 
 function deleteDigit() {
-  if (input['secondNumber']) {
-    input['secondNumber'] = input['secondNumber'].slice(0,-1);
-  } else if (input['operator']) {
-    input['operator'] = input['operator'].slice(0,-1);
-  } else {
-    input['firstNumber'] = input['firstNumber'].slice(0,-1);
-  }
+  let lastInput = input['secondNumber'] ? 'secondNumber' : input['operator'] ? 'operator' : 
+    input['firstNumber'] ? 'firstNumber' : null;
+
+  console.log("delete " + lastInput);
+  input[lastInput] = input[lastInput].slice(0,-1);
+ 
+  updateDisplay();
+}
+
+function clearDisplay() {
+  miniDisplay = "";
+  input.clear();
   updateDisplay();
 }
 
