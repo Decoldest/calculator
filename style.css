@@ -125,3 +125,11 @@ button.calc-button:active::before {
   transform: translate3d(0, 0, -1em);
   box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 }
+
+#ac {
+  background: rgb(254, 188, 188);
+}
+
+#\= {
+  background: rgb(169, 246, 196);
+}
