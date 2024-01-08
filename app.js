@@ -30,6 +30,7 @@ let input = {
 
 const MAX_LENGTH = 18;
 const MAX_DECIMALS = 10;
+let justOperated = false;
 
 const display = document.querySelector('.display')
 const miniDisplay = document.querySelector('.mini-display');
@@ -44,6 +45,7 @@ function setButtonListener(btns) {
 }
 
 function handleBtnInput(btnInput, btnID) {
+
   if (btnID === 'number') {
     handleNumberInput(btnInput)
   } else if (btnID === 'operator') {
@@ -71,7 +73,15 @@ function handleNumberInput(btnInput) {
   if (input['operator']) {
     input['secondNumber'] = input['secondNumber'] ? input['secondNumber'] + btnInput : btnInput;
   } else {
+    checkIfJustOperated()
     input['firstNumber'] = input['firstNumber'] ? input['firstNumber'] + btnInput : btnInput;
+  }
+
+  function checkIfJustOperated(){
+    if(justOperated) {
+      clearDisplay();
+      justOperated = !justOperated;
+    }
   }
 }
 
@@ -130,7 +140,6 @@ function handleMemoryInput(btnInput) {
       input['firstNumber'] ? null : 'firstNumber';
     if (lastInput) {
       input[lastInput] = input.memoryValue;
-      console.log("Recalled memory");
     }
   } else if (btnInput === 'm+') {
     input.memoryValue += +input['firstNumber'];
@@ -196,6 +205,7 @@ function pow(num1, num2) {
 }
 
 function operate(num2, operator, num1) {
+  justOperated = !justOperated;
   if(operator === '+'){
     return add(num1, num2);
   } else if (operator === '-'){
