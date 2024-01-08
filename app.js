@@ -196,19 +196,17 @@ function fixDecimals(number){
     return (number.toString().split('.')[1] || '').length;
   }
   
-  function applyDecimalLimit(result, decimalPlaces) {
+  function applyDecimalLimit(number, decimalPlaces) {
     if (decimalPlaces > MAX_DECIMALS) {
-      result = parseFloat(result.toFixed(MAX_DECIMALS));
+      number = parseFloat(number.toFixed(MAX_DECIMALS));
     }
-    return result;
+    return number;
   }
 }
 
 
 function sqrt(num1) {
-  let result = Math.sqrt(num1);
-
-  return fixDecimals(result);
+  return fixDecimals(Math.sqrt(num1));
 }
 
 function pow(num1, num2) {
