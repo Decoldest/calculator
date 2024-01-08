@@ -31,6 +31,7 @@ let input = {
 const MAX_LENGTH = 18;
 const MAX_DECIMALS = 10;
 let justOperated = false;
+let isError = false;
 
 const display = document.querySelector('.display')
 const miniDisplay = document.querySelector('.mini-display');
@@ -45,6 +46,10 @@ function setButtonListener(btns) {
 }
 
 function handleBtnInput(btnInput, btnID) {
+  if (isError) {
+    isError = !isError;
+    clearDisplay();
+  }
 
   if (btnID === 'number') {
     handleNumberInput(btnInput)
@@ -174,20 +179,23 @@ function multiply(num1, num2) {
 function divide(num1, num2) {
   let result;
   if (num2 === '0') {
-    return "Error";
+    isError = !isError;
+    return "Math Error";
   }
   result = num1 / num2;
+  
+  return fixDecimals(result);
+}
 
-  const decimalPlaces = getDecimalPlaces(result);
+function fixDecimals(number){
+  const decimalPlaces = getDecimalPlaces(number);
 
-  result = applyDecimalLimit(result, decimalPlaces);
-
-  return result;
+  return applyDecimalLimit(number, decimalPlaces);
 
   function getDecimalPlaces(number) {
     return (number.toString().split('.')[1] || '').length;
   }
-
+  
   function applyDecimalLimit(result, decimalPlaces) {
     if (decimalPlaces > MAX_DECIMALS) {
       result = parseFloat(result.toFixed(MAX_DECIMALS));
@@ -196,8 +204,11 @@ function divide(num1, num2) {
   }
 }
 
+
 function sqrt(num1) {
-  return Math.sqrt(num1);
+  let result = Math.sqrt(num1);
+
+  return fixDecimals(result);
 }
 
 function pow(num1, num2) {
@@ -220,7 +231,6 @@ function operate(num2, operator, num1) {
     return sqrt(num1)
   }
 }
-
 
 //On load
 setButtonListener(btns);
