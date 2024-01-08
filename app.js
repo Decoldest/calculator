@@ -160,8 +160,13 @@ function clearDisplay() {
 }
 
 function checkLengthLimit(word, MAX_LENGTH) {
-  console.log(word + " "  + MAX_LENGTH);
-  return word.length <= MAX_LENGTH;
+  const isValidLength = word.length <= MAX_LENGTH;
+
+  if (!isValidLength) {
+    alert("Digit length limit reached");
+  }
+
+  return isValidLength;
 }
 
 function add(num1, num2) {
@@ -203,7 +208,6 @@ function fixDecimals(number){
     return number;
   }
 }
-
 
 function sqrt(num1) {
   return fixDecimals(Math.sqrt(num1));
