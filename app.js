@@ -2,6 +2,7 @@ let input = {
   firstNumber : '',
   operator : '',
   secondNumber : '',
+  memoryValue : '',
   pop(){
     if(this.secondNumber){
       let temp = this.secondNumber;
@@ -27,7 +28,6 @@ let input = {
   }
 }; //Store [firstNumber, operator, secondNumber]
 
-let memoryValue = 0;
 const MAX_LENGTH = 18;
 const MAX_DECIMALS = 10;
 
@@ -58,6 +58,8 @@ function handleBtnInput(btnInput, btnID) {
     handleDecimal();
   } else if (btnID === 'sqrt') {
     handleSqrt();
+  } else if (btnID === 'memory'){
+    handleMemoryInput(btnInput);
   }
   updateDisplay();
 }
@@ -109,15 +111,31 @@ function deleteDigit() {
 function handleDecimal() {
   lastInput = input['secondNumber'] ? 'secondNumber' : input['operator'] ? null : 
     input['firstNumber'] ? 'firstNumber' : null;
-    if (lastInput) {
-      if (/^\d+$/.test(input[lastInput]))
-      input[lastInput] += '.';
-    }
+  if (lastInput && /^\d+$/.test(input[lastInput])) {
+    input[lastInput] += '.';
+  }
 }
 
-function handleSqrt(){
+function handleSqrt() {
   if(!input['operator'] && !input['secondNumber']) {
     input['firstNumber'] = operate(null, 'sqrt', input['firstNumber']).toString()
+  }
+}
+
+function handleMemoryInput(btnInput) {
+  if (btnInput === 'mc') {
+    input.memoryValue = '';
+  } else if (btnInput === 'mr') {
+    lastInput = input['secondNumber'] ? null : input['operator'] ? 'secondNumber' : 
+      input['firstNumber'] ? null : 'firstNumber';
+    if (lastInput) {
+      input[lastInput] = input.memoryValue;
+      console.log("Recalled memory");
+    }
+  } else if (btnInput === 'm+') {
+    input.memoryValue += +input['firstNumber'];
+  } else if (btnInput === 'm-') {
+    input.memoryValue -= +input['firstNumber'];
   }
 }
 
@@ -168,8 +186,6 @@ function divide(num1, num2) {
     return result;
   }
 }
-
-
 
 function sqrt(num1) {
   return Math.sqrt(num1);
