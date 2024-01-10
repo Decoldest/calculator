@@ -98,13 +98,20 @@ function handleOperatorInput(btnInput) {
   if (!input['firstNumber']) return;
   
   if (input['secondNumber']) {
-    miniDisplay.textContent = input.join();
+    if(!miniDisplay.textContent){
+      miniDisplay.textContent = input.join();
+    } else {
+      miniDisplay.textContent += ` ${input['operator']} ${input['secondNumber']}`
+    }
+    
     input['firstNumber'] = operate(input.pop(), input.pop(), input.pop()).toString();
   }
   input['operator'] = btnInput;
 }
 
 function calculate() {
+  justOperated = !justOperated;
+
   if(input['secondNumber']) {
     input['firstNumber'] = operate(input.pop(), input.pop(), input.pop()).toString();
   }
@@ -218,7 +225,6 @@ function pow(num1, num2) {
 }
 
 function operate(num2, operator, num1) {
-  justOperated = !justOperated;
   if(operator === '+'){
     return add(num1, num2);
   } else if (operator === '-'){
