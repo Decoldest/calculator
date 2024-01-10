@@ -177,15 +177,15 @@ function checkLengthLimit(word, MAX_LENGTH) {
 }
 
 function add(num1, num2) {
-  return +num1 + +num2 + '';
+  return fixDecimals(+num1 + +num2 + '');
 }
 
 function subtract(num1, num2) {
-  return num1 - num2;
+  return fixDecimals(num1 - num2);
 }
 
 function multiply(num1, num2) {
-  return num1 * num2;
+  return fixDecimals(num1 * num2);
 }
 
 function divide(num1, num2) {
@@ -221,7 +221,7 @@ function sqrt(num1) {
 }
 
 function pow(num1, num2) {
-  return Math.pow(num1, num2);
+  return fixDecimals(Math.pow(num1, num2));
 }
 
 function operate(num2, operator, num1) {
