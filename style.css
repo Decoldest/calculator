@@ -69,12 +69,28 @@
 }
 
 footer {
-	margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 	font-weight: 700;
-	text-align: center;
-  color: #3f5560;
+  color: #413f60;
+  width: 100%;
+  gap: 0.5rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
+#logo-link, #logo-link:visited, #logo-link:hover {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+#logo-img {
+  width: 25px;
+  height: auto;
+}
+
 
 button {
   width: 20.5%;
@@ -88,7 +104,6 @@ button {
   line-height: 30px;
   font-size: 14px;
 }
-
 
 button.calc-button {
   border: 2px solid var(--colorShadeA);
